@@ -153,7 +153,7 @@ module.exports = user;
 ![jwt-nodemailer](./assets/screen.PNG)
 
 
-![jwt-nodemailer](./assets/email.png)
+![jwt-nodemailer](./assets/email.PNG)
 
 Después al hacer click sobre **Enlace**, os llevará a la página de recuperación de contraseña
 
