@@ -1,0 +1,415 @@
+<!DOCTYPE html><html><head>
+      <title>jwtnodemailer</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <style>
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}
+
+/* highlight */
+pre[data-line] {
+  position: relative;
+  padding: 1em 0 1em 3em;
+}
+pre[data-line] .line-highlight-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  display: block;
+  width: 100%;
+}
+
+pre[data-line] .line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: hsla(24, 20%, 50%,.08);
+  background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
+}
+
+pre[data-line] .line-highlight:before, 
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-start);
+  position: absolute;
+  top: .4em;
+  left: .6em;
+  min-width: 1em;
+  padding: 0 .5em;
+  background-color: hsla(24, 20%, 50%,.4);
+  color: hsl(24, 20%, 95%);
+  font: bold 65%/1.5 sans-serif;
+  text-align: center;
+  vertical-align: .3em;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 1px white;
+}
+
+pre[data-line] .line-highlight[data-end]:after {
+  content: attr(data-end);
+  top: auto;
+  bottom: .4em;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview  ">
+      <p><img src="https://user-images.githubusercontent.com/27650532/77754601-e8365180-702b-11ea-8bed-5bc14a43f869.png" alt="logotipo de The Bridge" title="logotipo de The Bridge"></p>
+<h1 class="mume-header" id="bootcamp-web-developer-full-stackhttpswwwthebridgetechbootcampsbootcamp-fullstack-developer"><a href="https://www.thebridge.tech/bootcamps/bootcamp-fullstack-developer/">Bootcamp Web Developer Full Stack</a></h1>
+
+<h3 class="mume-header" id="html-css-js-es6-nodejs-frontend-backend-express-react-mern-testing-devops">HTML, CSS, JS, ES6, Node.js, Frontend, Backend, Express, React, MERN, testing, DevOps</h3>
+
+<h1 class="mume-header" id="recuperar-contrase%C3%B1a-mediante-nodemailer">RECUPERAR CONTRASE&#xD1;A MEDIANTE NODEMAILER</h1>
+
+<p>Para poder empezar , hay que crearse dos cuentas de correo.En este caso vamos a usar una de <strong>gmail</strong> y otra de <strong>outlook</strong>. La cuenta de <strong>outlook</strong> ser&#xE1; la cuenta receptora y la de <strong>gmail</strong> la emisora.</p>
+<ol>
+<li>Despues de crearnos una cuenta de <strong>gmail</strong> nos vamos a &quot;Gestionar tu cuenta de Google/Seguridad/Verificaci&#xF3;n en dos pasos&quot;<br>
+<img src="./assets/account.png" alt="gestionar tu cuenta"><br>
+<img src="./assets/2pasos.png" alt="gestionar tu cuenta"></li>
+</ol>
+<p>Cuando tengamos la cuenta con la <strong>Verificaci&#xF3;n en dos pasos</strong> nos vamos a <strong>Contrase&#xF1;as de aplicaciones</strong></p>
+<p><img src="./assets/capp.png" alt="gestionar tu cuenta"></p>
+<p>Elegimos <strong>Otra</strong> y le asignamos un nombre, por ejemplo <strong>nodemailer</strong> y le damos a <strong>generar</strong></p>
+<p><img src="./assets/capp2.png" alt="gestionar tu cuenta"></p>
+<p>A continuaci&#xF3;n nos saldr&#xE1; una <strong>Contrase&#xF1;a de aplicaci&#xF3;n</strong>.</p>
+<h1 class="mume-header" id="importante">IMPORTANTE</h1>
+
+<p>Guarda esa contrase&#xF1;a ,porque la necesitamos para poder hacer el env&#xED;o desde nuestro backend a la otra cuenta de correo, que ser&#xE1; en los siguientes pasos<br>
+<img src="./assets/capp3.png" alt="gestionar tu cuenta"></p>
+<ol start="2">
+<li>Una vez tengamos nuestra cuenta <strong>emisora</strong> preparada para poder enviar correos desde una app externa , procedemos a modificar el c&#xF3;digo. Vamos a utilizar el repo del <strong>taller de jwt</strong>:</li>
+</ol>
+<ul>
+<li><a href="https://github.com/igonzaleztb/TALLER_JWTJUNIO2022">TALLER JWT</a></li>
+</ul>
+<p>Lo primero que tenemos que hacer es irnos a nuestro backend e instalar lo siguiente:</p>
+<pre data-role="codeBlock" data-info="node" class="language-javascript">npm i nodemailer
+</pre><p>Despu&#xE9;s en la raiz de nuestro proyecto nos creamos un script que le llamaremos <strong>email.js</strong> con el siguiente contenido</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword keyword-const">const</span> nodemailer <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;nodemailer&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword keyword-const">const</span> <span class="token function-variable function">sendMail</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token keyword module keyword-from">from</span><span class="token punctuation">,</span>to<span class="token punctuation">,</span> subject<span class="token punctuation">,</span> html</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span><span class="token punctuation">{</span>
+
+     
+
+      <span class="token keyword keyword-const">const</span> transporter <span class="token operator">=</span> nodemailer<span class="token punctuation">.</span><span class="token method function property-access">createTransport</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        service<span class="token operator">:</span>  <span class="token string">&quot;gmail&quot;</span><span class="token punctuation">,</span>
+        auth <span class="token operator">:</span> <span class="token punctuation">{</span>
+            user <span class="token operator">:</span> <span class="token string">&quot;TU_CUENTA_EMISORA_DE_CORREO&quot;</span><span class="token punctuation">,</span>
+            pass <span class="token operator">:</span> <span class="token string">&quot;CONTRASE&#xD1;A_DE_APLICACI&#xD3;N_GENERADA&quot;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    <span class="token keyword keyword-const">const</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token keyword module keyword-from">from</span><span class="token punctuation">,</span> 
+        to <span class="token punctuation">,</span>
+        subject<span class="token punctuation">,</span>    
+        html
+    <span class="token punctuation">}</span>
+
+    transporter<span class="token punctuation">.</span><span class="token method function property-access">sendMail</span><span class="token punctuation">(</span>options<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">error<span class="token punctuation">,</span> info</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span><span class="token punctuation">{</span>
+        <span class="token keyword control-flow keyword-if">if</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span>
+        <span class="token keyword control-flow keyword-else">else</span> <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>  
+
+<span class="token punctuation">}</span>
+
+ 
+
+module<span class="token punctuation">.</span><span class="token property-access">exports</span> <span class="token operator">=</span>sendMail
+</pre><p>A continuaci&#xF3;n vamos dentro del controllador <strong>user.controllers.js</strong> y agregamos todo este c&#xF3;digo</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript"><span class="token keyword keyword-const">const</span> jwt <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;jsonwebtoken&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ 
+
+<span class="token keyword keyword-const">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;fs&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-const">const</span> sendMail <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;../email&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-const">const</span> <span class="token constant">SECRET</span> <span class="token operator">=</span> <span class="token string">&quot;tallerjwt&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-const">const</span> user <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">confirmedUser</span><span class="token operator">:</span> <span class="token keyword keyword-async">async</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-let">let</span> emailUser <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token property-access">body</span><span class="token punctuation">.</span><span class="token property-access">email</span><span class="token punctuation">;</span>
+ 
+    <span class="token keyword keyword-let">let</span> idUsuario <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+ 
+
+    <span class="token keyword keyword-const">const</span> payload <span class="token operator">=</span> <span class="token punctuation">{</span>
+      email<span class="token operator">:</span> emailUser<span class="token punctuation">,</span>
+      id<span class="token operator">:</span> idUsuario<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-const">const</span> token <span class="token operator">=</span> jwt<span class="token punctuation">.</span><span class="token method function property-access">sign</span><span class="token punctuation">(</span>payload<span class="token punctuation">,</span> <span class="token constant">SECRET</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> expiresIn<span class="token operator">:</span> <span class="token string">&quot;15m&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword keyword-const">const</span> link <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;a href=&quot;http://localhost:5000/confirmuser/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>idUsuario<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>token<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&quot;&gt;Enlace&lt;/a&gt;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+    
+    <span class="token function">sendMail</span><span class="token punctuation">(</span><span class="token string">&quot;EMISOR&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;CORREO_DESTINO&quot;</span> <span class="token punctuation">,</span> <span class="token string">&quot;ASUNTO DEL MENSAJE&quot;</span><span class="token punctuation">,</span>  <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>link<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span>  <span class="token punctuation">)</span>
+ 
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token function-variable function">checkUserPost</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-const">const</span> <span class="token punctuation">{</span> email <span class="token punctuation">}</span> <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token property-access">body</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-let">let</span> objectToSave <span class="token operator">=</span> <span class="token punctuation">{</span> status<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> email<span class="token operator">:</span> email <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    fs<span class="token punctuation">.</span><span class="token method function property-access">writeFile</span><span class="token punctuation">(</span>
+      <span class="token string">&quot;archivo.json&quot;</span><span class="token punctuation">,</span>
+      <span class="token known-class-name class-name">JSON</span><span class="token punctuation">.</span><span class="token method function property-access">stringify</span><span class="token punctuation">(</span>objectToSave<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token string">&quot;utf8&quot;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token keyword control-flow keyword-throw">throw</span> err<span class="token punctuation">;</span>
+        <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">&quot;Archivo guardado&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">confirmUserGet</span><span class="token operator">:</span> <span class="token keyword keyword-async">async</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-const">const</span> <span class="token punctuation">{</span> token <span class="token punctuation">}</span> <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token property-access">params</span><span class="token punctuation">;</span>
+
+    <span class="token keyword control-flow keyword-try">try</span> <span class="token punctuation">{</span>
+      jwt<span class="token punctuation">.</span><span class="token method function property-access">verify</span><span class="token punctuation">(</span>token<span class="token punctuation">,</span> <span class="token constant">SECRET</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      res<span class="token punctuation">.</span><span class="token method function property-access">render</span><span class="token punctuation">(</span><span class="token string">&quot;confirmed-user&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword control-flow keyword-catch">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span class="token method function property-access">send</span><span class="token punctuation">(</span><span class="token string">&quot;No se puede confirmar el usuario, token inv&#xE1;lido&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">dataUser</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-const">const</span> json <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;../archivo.json&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span>
+    <span class="token keyword control-flow keyword-if">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>json<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span> <span class="token keyword control-flow keyword-else">else</span> <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span class="token method function property-access">json</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span><span class="token property-access">exports</span> <span class="token operator">=</span> user<span class="token punctuation">;</span>
+
+
+</pre><ol start="3">
+<li>Por &#xFA;ltimo , al ejecutar nuestra aplicaci&#xF3;n en react e introducir el correo electr&#xF3;nico , si habeis introducido todos los datos correctos , os aparecer&#xE1; un correo como el siguiente.<br>
+<img src="./assets/screen.PNG" alt="jwt-nodemailer"><br>
+<img src="./assets/email.png" alt="jwt-nodemailer"></li>
+</ol>
+<p>Despu&#xE9;s al hacer click sobre <strong>Enlace</strong>, os llevar&#xE1; a la p&#xE1;gina de recuperaci&#xF3;n de contrase&#xF1;a</p>
+<p><img src="./assets/screen2.PNG" alt="jwt-nodemailer"></p>
+<p>Al final , si introducis la cuenta de correo que usaste anteriormente os dir&#xE1; que ya teneis la cuenta confirmada<br>
+<img src="./assets/confirmeduser.PNG" alt="jwt-nodemailer"></p>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+  
+    </body></html>
