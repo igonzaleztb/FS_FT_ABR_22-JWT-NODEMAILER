@@ -150,15 +150,15 @@ module.exports = user;
 
 
 
-![jwt-nodemailer](./assets/screen.PNG)
+![jwt-nodemailer](./assets/screen.png)
 
 
-![jwt-nodemailer](./assets/email.PNG)
+![jwt-nodemailer](./assets/email.png)
 
 Después al hacer click sobre **Enlace**, os llevará a la página de recuperación de contraseña
 
-![jwt-nodemailer](./assets/screen2.PNG)
+![jwt-nodemailer](./assets/screen2.png)
 
 Al final , si introducis la cuenta de correo que usaste anteriormente os dirá que ya teneis la cuenta confirmada
-![jwt-nodemailer](./assets/confirmeduser.PNG)
+![jwt-nodemailer](./assets/confirmeduser.png)
 
