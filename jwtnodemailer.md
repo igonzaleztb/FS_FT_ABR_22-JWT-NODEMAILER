@@ -14,16 +14,16 @@ Para poder empezar , hay que crearse dos cuentas de correo.En este caso vamos a 
 
 Cuando tengamos la cuenta con la **Verificación en dos pasos** nos vamos a **Contraseñas de aplicaciones**
 
-![gestionar tu cuenta](./assets/capp.png)
+![gestionar tu cuenta](./assets/capp.PNG)
 
 Elegimos **Otra** y le asignamos un nombre, por ejemplo **nodemailer** y le damos a **generar**
 
-![gestionar tu cuenta](./assets/capp2.png)
+![gestionar tu cuenta](./assets/capp2.PNG)
 
 A continuación nos saldrá una **Contraseña de aplicación**. 
 # IMPORTANTE
 Guarda esa contraseña ,porque la necesitamos para poder hacer el envío desde nuestro backend a la otra cuenta de correo, que será en los siguientes pasos
-![gestionar tu cuenta](./assets/capp3.png)
+![gestionar tu cuenta](./assets/capp3.PNG)
 
 
 2. Una vez tengamos nuestra cuenta **emisora** preparada para poder enviar correos desde una app externa , procedemos a modificar el código. Vamos a utilizar el repo del **taller de jwt**:
@@ -150,7 +150,7 @@ module.exports = user;
 
 
 
-![jwt-nodemailer](./assets/screen.png)
+![jwt-nodemailer](./assets/screen.PNG)
 
 
 ![jwt-nodemailer](./assets/email.png)
@@ -160,5 +160,5 @@ Después al hacer click sobre **Enlace**, os llevará a la página de recuperaci
 ![jwt-nodemailer](./assets/screen2.png)
 
 Al final , si introducis la cuenta de correo que usaste anteriormente os dirá que ya teneis la cuenta confirmada
-![jwt-nodemailer](./assets/confirmeduser.png)
+![jwt-nodemailer](./assets/confirmeduser.PNG)
 
