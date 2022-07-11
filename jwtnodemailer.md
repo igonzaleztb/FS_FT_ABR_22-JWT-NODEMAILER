@@ -147,13 +147,13 @@ module.exports = user;
 
 
 3. Por último , al ejecutar nuestra aplicación en react e introducir el correo electrónico , si habeis introducido todos los datos correctos , os aparecerá un correo como el siguiente.
-![gestionar tu cuenta](./assets/screen.png)
-![gestionar tu cuenta](./assets/email.png)
+![jwt-nodemailer](./assets/screen.PNG)
+![jwt-nodemailer](./assets/email.png)
 
 Después al hacer click sobre **Enlace**, os llevará a la página de recuperación de contraseña
 
-![gestionar tu cuenta](./assets/screen2.png)
+![jwt-nodemailer](./assets/screen2.PNG)
 
 Al final , si introducis la cuenta de correo que usaste anteriormente os dirá que ya teneis la cuenta confirmada
-![gestionar tu cuenta](./assets/confirmeduser.png)
+![jwt-nodemailer](./assets/confirmeduser.PNG)
 
